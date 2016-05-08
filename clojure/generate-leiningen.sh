@@ -17,9 +17,9 @@ do IFS=","; set $v
 
    mkdir -p $targetdir
 
-   generate_script=generate-dockerfile.sh
+   generate_script=generate-leiningen-dockerfile.sh
    if [[ $1 == *"alpine"* ]]; then
-       generate_script=generate-dockerfile-alpine.sh
+       generate_script=generate-leiningen-dockerfile-alpine.sh
    fi
 
    JAVA_BASE=$1 LEIN_VERSION=$2 ./$generate_script > $targetdir/Dockerfile
