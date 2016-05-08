@@ -13,7 +13,7 @@ versions=(
 for v in "${versions[@]}"
 do IFS=","; set $v
 
-   targetdir=$1-$2
+   targetdir=$1-leiningen-$2
 
    mkdir -p $targetdir
 
