@@ -1,4 +1,4 @@
-FROM java:openjdk-6b38
+FROM java:openjdk-8
 MAINTAINER Raymond Kroon <raymond@k3n.nl>
 
 RUN apt-get update && apt-get install -y --no-install-recommends 		bash 		git 	&& rm -rf /var/lib/apt/lists/*

@@ -1,4 +1,4 @@
-FROM java:openjdk-8u77-alpine
+FROM java:openjdk-8-alpine
 MAINTAINER Raymond Kroon <raymond@k3n.nl>
 
 RUN apk add --update bash git && rm -rf /var/cache/apk/*
