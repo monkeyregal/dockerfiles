@@ -1,4 +1,4 @@
-FROM java:openjdk-7u91-alpine
+FROM java:openjdk-8-alpine
 MAINTAINER Raymond Kroon <raymond@k3n.nl>
 
 RUN apk add --update bash git ca-certificates     && update-ca-certificates     && rm -rf /var/cache/apk/*

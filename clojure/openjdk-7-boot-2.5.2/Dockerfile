@@ -1,11 +1,9 @@
-FROM java:openjdk-8u77-alpine
+FROM java:openjdk-7
 MAINTAINER Raymond Kroon <raymond@k3n.nl>
 
-RUN apk add --update bash git ca-certificates     && update-ca-certificates     && rm -rf /var/cache/apk/*
+RUN apt-get update && apt-get install -y --no-install-recommends 		bash 		git 	&& rm -rf /var/lib/apt/lists/*
 
-RUN find /etc/ssl/certs/ -name "*.crt" -o -name "*.pem" -exec keytool -importcert -file {} -keystore $JAVA_HOME/jre/lib/security/cacerts -noprompt -storepass changeit -alias {} \;
-
-RUN adduser -D -h /home/user user
+RUN useradd --create-home --home-dir /home/user user 	&& chown -R user:user /home/user
 
 USER user
 WORKDIR /home/user

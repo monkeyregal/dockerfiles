@@ -1,4 +1,4 @@
-FROM java:openjdk-7u101
+FROM java:openjdk-6
 MAINTAINER Raymond Kroon <raymond@k3n.nl>
 
 RUN apt-get update && apt-get install -y --no-install-recommends 		bash 		git 	&& rm -rf /var/lib/apt/lists/*
@@ -8,16 +8,13 @@ RUN useradd --create-home --home-dir /home/user user 	&& chown -R user:user /hom
 USER user
 WORKDIR /home/user
 
-ENV BOOT_VERSION 2.5.2
-RUN mkdir bin     && wget -O bin/boot https://github.com/boot-clj/boot-bin/releases/download/2.5.2/boot.sh     && chmod +x bin/boot
+RUN mkdir bin     && wget -O bin/lein https://raw.githubusercontent.com/technomancy/leiningen/2.6.1/bin/lein     && chmod +x bin/lein
 
-#preload boot
-RUN bin/boot
-
-ENV BOOT_EMIT_TARGET no
+#preload leiningen
+RUN bin/lein
 
 #mount points for app and maven cache
 WORKDIR /home/user/app
 VOLUME /home/user/app /home/user/.m2
 
-ENTRYPOINT ["/home/user/bin/boot"]
+ENTRYPOINT ["/home/user/bin/lein"]
