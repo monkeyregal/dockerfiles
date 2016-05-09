@@ -4,7 +4,12 @@ cd "$(dirname "$0")"
 
 set -e
 
-changed_files=( $(git diff-tree --no-commit-id --name-only -r -M HEAD | grep Dockerfile) )
+git_revison="HEAD"
+if [[ -n $1 ]]; then
+    git_revision=$1
+fi
+
+changed_files=( $(git diff-tree --no-commit-id --name-only -r -M $git_revision | grep Dockerfile) )
 
 start_dir=$(pwd)
 echo $start_dir
